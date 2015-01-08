@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="span8">
+        <table class="table">
+            <tbody>
+            <br>
+            <tr>
+                <td>
+                    <canvas id="garden" width="400" height="400" drawing plant='plant' plants='plants' save-callback='save(plant)'>
+
+                        <p>Your browser does not support the canvas element.</p>
+
+                    </canvas>
+                </td>
+                <td>
+
+                  <div class="control-group">
+                    <label class="control-label">Plant</label>
+
+                    <div class="controls">
+                      <label class="btn btn-default"><input type="radio"
+                                                           name="plantRadio" ng-model="plantType" value="0"
+                                                           >Tulip
+                        <figure>
+                          <img src="images/tulip.gif" alt="Tulip"
+                               width='50' height='50'>
+                        </figure>
+                      </label>
+
+                      <label class="btn btn-default"><input type="radio"
+                                                            name="plantRadio" ng-model="plantType"
+                                                            value="1">Flower
+                        <figure>
+                          <img src="images/joannaFlowanna.gif" alt="Flower"
+                               width='50' height='50'>
+                        </figure>
+                      </label>
+
+                      <label class="btn btn-default"><input type="radio"
+                                                            name="plantRadio" ng-model="plantType"
+                                                            value="2">Daisy
+                        <figure>
+                          <img src="images/daisy.gif" alt="Daisy"
+                               width='50' height='50'>
+                        </figure>
+                      </label>
+                    </div>
+                  </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

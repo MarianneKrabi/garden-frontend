@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="span4">
+        <h2>Plant Overview</h2>
+    </div>
+</div>
+<form class="form-search">
+    <input data-ng-model="searchString" type="text" class="input-medium search-query">
+    <button data-ng-click="search()" data-ng-disabled="!searchString" type="submit" class="btn btn-primary">Search</button>
+    <button data-ng-click="clearSearch()" data-ng-disabled="!filteredResults" type="submit" class="btn">Clear</button>
+</form>
+<div class="row">
+    <div class="span12">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Plant Name</th>
+                <th>Position</th>
+                <th>Created</th>
+                <th colspan="2">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="plant in plants">
+                <td>{{plant.id}}</td>
+                <td>{{plant.name}}</td>
+                <td>{{plant.xposition}} {{plant.yposition}} </td>
+                <td>{{ plant.createDate | date }}</td>
+                <td>
+                    <a data-ng-click="deletePlant(plant.id)" title="delete"><i class="glyphicon glyphicon-remove"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

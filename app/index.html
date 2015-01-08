@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-ng-app="Garden">
+<head>
+  <meta charset="utf-8">
+  <title>Garden</title>
+  <link rel="stylesheet" href="styles/app.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" media="screen" charset="utf-8">
+
+  <style>
+    body {
+      padding-top: 60px;
+      /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span>
+        <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </a> <a class="navbar-brand" href="#/garden">My Garden</a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/garden">Home</a></li>
+          <li><a href="#/plant-list">Overview</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div data-ng-view>
+    <!-- Content is rendered here -->
+
+  </div>
+  <hr/>
+  <div>
+    Garden: v<span app-version></span>
+  </div>
+
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/services.js"></script>
+<script src="scripts/controllers.js"></script>
+<script src="scripts/filters.js"></script>
+<script src="scripts/directives.js"></script>
+
+</body>
+
+</html>
