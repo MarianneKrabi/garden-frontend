@@ -40,9 +40,22 @@ controllers.controller("PlantDetailCtrl", ["$scope", "$location", "Plant", funct
 
   $scope.save = function (plant) {
     Plant.save(plant, function (plant) {
+      $scope.plant = plant;
+      //$scope.plants.push(plant);
+      Plant.query(function (value) {
+        $scope.plants = value;
+      });
       $location.path('/garden');
     });
   }
+
+  $scope.deletePlant = function (plantId) {
+    Plant.delete({id: plantId}, function() {
+      Plant.query(function (value) {
+        $scope.plants = value;
+      });
+    });
+  };
 }]);
 
 controllers.controller("PlantListCtrl", ["$scope", "Plant", function ($scope, Plant) {

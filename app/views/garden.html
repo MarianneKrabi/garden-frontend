@@ -1,15 +1,11 @@
 <div class="row">
-    <div class="span8">
+    <div class="span12">
         <table class="table">
             <tbody>
             <br>
             <tr>
                 <td>
-                    <canvas id="canvas" width="400" height="400" drawing plant='plant' plants='plants' save-callback='save(plant)'>
-
-                        <p>Your browser does not support the canvas element.</p>
-
-                    </canvas>
+                    <drawing-canvas/>
                 </td>
                 <td>
 
@@ -22,7 +18,7 @@
                                                            >Tulip
                         <figure>
                           <img src="images/tulip.gif" alt="Tulip"
-                               width='50' height='50'>
+                               height='50'>
                         </figure>
                       </label>
 
@@ -31,7 +27,7 @@
                                                             value="1">Flower
                         <figure>
                           <img src="images/joannaFlowanna.gif" alt="Flower"
-                               width='50' height='50'>
+                               height='50'>
                         </figure>
                       </label>
 
@@ -40,13 +36,19 @@
                                                             value="2">Daisy
                         <figure>
                           <img src="images/daisy.gif" alt="Daisy"
-                               width='50' height='50'>
+                               height='50'>
                         </figure>
                       </label>
                     </div>
                   </div>
-
                 </td>
+            </tr>
+            <tr>
+             <td>
+               <h3>Control:</h3>
+               <p>Use arrow keys to move the pony!</p>
+               <p>Press "E" to start and stop eating plants!</p>
+             </td>
             </tr>
             </tbody>
         </table>

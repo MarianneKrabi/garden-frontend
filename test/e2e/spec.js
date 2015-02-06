@@ -2,9 +2,19 @@
  * Created by marianne on 15.01.15.
  */
 
-describe('Garden app', function() {
+describe('Garden app', function () {
+
+  var numStartPlants, plants;
+
   beforeEach(function () {
-    browser.get('http://fancy.flowergarden/');
+    browser.get('/');
+
+    browser.setLocation('/plant-list');
+    plants = element.all(by.repeater('plant in plants'));
+    plants.count().then(function (elems) {
+      numStartPlants = elems;
+    });
+    browser.setLocation('/garden');
   });
 
   describe('general page tests', function () {
@@ -38,8 +48,8 @@ describe('Garden app', function() {
     });
   });
 
-  describe('/garden page test', function() {
-    it('should select radio buttons', function() {
+  describe('/garden page test', function () {
+    it('should select radio buttons', function () {
       var radioButton = element.all(by.css('input'));
       expect(radioButton.get(0).getAttribute('checked')).toBeTruthy();
       expect(radioButton.get(1).getAttribute('checked')).toBeFalsy();
@@ -56,7 +66,8 @@ describe('Garden app', function() {
       expect(radioButton.get(0).getAttribute('checked')).toBeFalsy();
     });
 
-    it('should draw 1 Tulip, 1 Flower and 1 Daisy', function() {
+    it('should draw three more plants', function () {
+
       var canvas = element(by.id('canvas'));
       var radioButton = element.all(by.css('input'));
 
@@ -67,31 +78,51 @@ describe('Garden app', function() {
       canvas.click();
 
       browser.setLocation('/plant-list');
-      var plants = element.all(by.repeater('plant in plants'));
-      expect(plants.count()).toEqual(3);
+      expect(plants.count()).toEqual(numStartPlants + 3);
 
-
-      //var plantNames = element(by.repeater('plant in plants').row(0)).element.all(by.css('td')).get(1);
-      var plantNames = element.all(by.repeater('plant in plants').column('plant.name'));
-
-      function getNames() {
-        return plantNames.map(function(elm) {
-          return elm.getText();
-        });
-      }
-      expect(getNames()).toEqual(['Tulip', 'Flower', 'Daisy']);
     });
   });
 
   describe('/plant-list page test', function () {
-    it('should delete plants', function () {
+    beforeEach(function() {
       browser.setLocation('/plant-list');
-      var plants = element.all(by.repeater('plant in plants'));
-      expect(plants.count()).toEqual(3);
-
+    });
+    it('should delete plants', function () {
       element.all(by.css('i')).get(0).click();
-      expect(plants.count()).toEqual(2);
+      expect(plants.count()).toEqual(numStartPlants - 1);
+    });
+
+    it('should search for Tulips', function () {
+      var plantNames = element.all(by.repeater('plant in plants').column('plant.name'));
+
+      var plantNameArray = plantNames.map(function (elm) {
+        return elm.getText();
+      });
+
+      var numTulips = 0;
+      for (var i = 0; i < numStartPlants; ++i) {
+        if (plantNameArray[i] == 'Tulip') {
+          numTulips++;
+        }
+      }
+
+      var searchField = element(by.css('input'));
+      searchField.sendKeys('Tulip');
+
+      element(by.buttonText('Search')).click();
+      expect(plants.count()).toEqual(numTulips);
+    });
+
+    it('should clear search', function () {
+      var searchField = element(by.css('input'));
+      searchField.sendKeys('Tulip');
+      element(by.buttonText('Search')).click();
+
+      element(by.buttonText('Clear')).click();
+
+      expect(plants.count()).toEqual(numStartPlants);
     });
   });
+
 });
 

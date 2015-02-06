@@ -2,14 +2,17 @@
 
 /* Services */
 
-angular.module('Garden.services', [ 'ngResource' ])
-  .value('version', '0.1')
-  .factory('Plant', function ($resource) {
+var serv = angular.module('Garden.services', [ 'ngResource' ]);
+
+serv.value('version', '0.1');
+serv.factory('Plant', function ($resource) {
     var Plant = $resource(
-      'http://fancy.flowergarden/garden/plant/:id', {
+      'http://10.10.4.57/garden/plant/:id', {
         id: '@id'
       }
     );
 
     return Plant;
-  });
+  }
+);
+
